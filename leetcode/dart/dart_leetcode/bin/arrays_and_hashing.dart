@@ -245,7 +245,7 @@ bool isValidSudoku36v1(List<List<String>> board) {
       }
     }
   }
-  HashSet<int> history = new HashSet<int>();
+  HashSet<int> history = HashSet<int>();
   for (var row in rows.keys) {
     for (var number in rows[row]!) {
       if (history.contains(number)) {
@@ -312,7 +312,7 @@ bool isValidSudoku36v2(List<List<String>> board) {
 String encodev1(List<String> strings) {
   String encoded = "";
   for (var string in strings) {
-    encoded += "~${string}~";
+    encoded += "~$string~";
   }
   return encoded;
 }
@@ -325,7 +325,7 @@ List<String> decodev1(String string) {
     if (character == "~" && currentWord.isEmpty) {
       startEncoding = true;
     }
-    if (character == "~" && !currentWord.isEmpty) {
+    if (character == "~" && currentWord.isNotEmpty) {
       decoded.add(currentWord);
       startEncoding = false;
       currentWord = "";
