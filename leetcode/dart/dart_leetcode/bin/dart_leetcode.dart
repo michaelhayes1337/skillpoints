@@ -3,5 +3,5 @@
 import 'two_pointers.dart';
 
 void main(List<String> arguments) {
-  print(isPalindrome125v1("0P"));
+  print(twoSum167v1([2, 7, 11, 15], 9));
 }
