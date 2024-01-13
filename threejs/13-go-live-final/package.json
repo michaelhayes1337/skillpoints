@@ -9,7 +9,7 @@
     "deploy": "vercel --prod"
   },
   "devDependencies": {
-    "vercel": "^32.5.0",
+    "vercel": "^32.7.2",
     "vite": "^4.5.0"
   },
   "dependencies": {
