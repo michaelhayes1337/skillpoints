@@ -36,6 +36,15 @@ const woodAmbientOcclusionTexture = textureLoader.load(
   "/textures/wood/Wood_024_ambientOcclusion.jpg"
 );
 
+const metalColorTexture = textureLoader.load("Metal_Plate_047_basecolor.jpg");
+metalColorTexture.colorSpace = THREE.SRGBColorSpace;
+
+console.log(metalColorTexture);
+
+const metalAmbientOcclusionTexture = textureLoader.load(
+  "Metal_Plate_047_ambientOcclusion.jpg"
+);
+
 // Scene
 const scene = new THREE.Scene();
 scene.background = new THREE.Color("#ffffff");
@@ -62,7 +71,15 @@ const material2 = new THREE.MeshBasicMaterial({ color: "yellow" });
 const material3 = new THREE.MeshBasicMaterial({ color: "pink" });
 const material4 = new THREE.MeshBasicMaterial({ color: "teal" });
 const material5 = new THREE.MeshBasicMaterial({ color: "cyan" });
-const material6 = new THREE.MeshBasicMaterial({ color: "orange" });
+
+const material6 = new THREE.MeshPhysicalMaterial({
+  color: "blue",
+  map: metalColorTexture,
+  aoMap: metalAmbientOcclusionTexture,
+  metalness: 1,
+  roughness: 0,
+  clearcoat: 1,
+});
 
 const woodMaterial = new THREE.MeshPhysicalMaterial({
   color: "brown",
@@ -113,7 +130,7 @@ sideBoardShelfRight.position.x = 250;
 sideBoardShelfRight.scale.set(300, 5, 25);
 shelfGroup.add(sideBoardShelfRight);
 
-scene.add(shelfGroup);
+//scene.add(shelfGroup);
 
 //Figurine
 const figurineGroup = new THREE.Group();
@@ -229,6 +246,8 @@ rightHand.position.y = 23;
 rightHand.scale.set(3, 3, 1);
 figurineGroup.add(rightHand);
 
+figurineGroup.position.y += 2;
+
 scene.add(figurineGroup);
 
 /**
@@ -237,12 +256,12 @@ scene.add(figurineGroup);
 
 const ambientLight = new THREE.AmbientLight({
   color: 0xffffff,
-  intensity: 0.5,
+  intensity: 1,
 });
-scene.add(ambientLight);
+//scene.add(ambientLight);
 
-const pointLight = new THREE.PointLight(0xffffff, 0.9);
-pointLight.position.set(0, 50, 45);
+const pointLight = new THREE.PointLight(0xff00ff, 1);
+pointLight.position.set(0, -10, -5);
 pointLight.lookAt(figurineGroup.position);
 
 scene.add(pointLight);
