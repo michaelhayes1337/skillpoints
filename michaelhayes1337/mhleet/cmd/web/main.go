@@ -2,13 +2,14 @@ package main
 
 import (
 	"fmt"
-	"github.com/alexedwards/scs/v2"
 	"log"
 	"mhleet/pkg/config"
 	"mhleet/pkg/handlers"
 	"mhleet/pkg/render"
 	"net/http"
 	"time"
+
+	"github.com/alexedwards/scs/v2"
 )
 
 const portNumber = ":42069"
@@ -21,7 +22,7 @@ func main() {
 
 	//Environment Flags
 	app.InProduction = false
-
+	app.UseCache = false
 	//Session
 	session = scs.New()
 	session.Lifetime = 24 * time.Hour

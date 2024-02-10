@@ -1,0 +1,16 @@
+:root {
+  --primary: #ebaf03;
+  --secondary: #46c1d1;
+  --success: #52b501;
+  --info: #214197;
+  --warning: #ffc564;
+  --danger: #fa005f;
+  --light: #3e2f78;
+  --dark: #1d2329;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #ebaf03;
+  border-color: #007bff;
+}
