@@ -46,3 +46,19 @@ func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
 		StringMap: stringMap,
 	})
 }
+
+func (m *Repository) Blogs(w http.ResponseWriter, r *http.Request) {
+	render.RenderTemplate(w, "blogs.page.go.html", &models.TemplateData{})
+}
+
+func (m *Repository) Projects(w http.ResponseWriter, r *http.Request) {
+	render.RenderTemplate(w, "projects.page.go.html", &models.TemplateData{})
+}
+
+func (m *Repository) Skills(w http.ResponseWriter, r *http.Request) {
+	render.RenderTemplate(w, "skills.page.go.html", &models.TemplateData{})
+}
+
+func (m *Repository) Contact(w http.ResponseWriter, r *http.Request) {
+	render.RenderTemplate(w, "contact.page.go.html", &models.TemplateData{})
+}
