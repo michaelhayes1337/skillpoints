@@ -1,7 +1,7 @@
 import pyautogui
 import random
 import time
-
+  
 while True:
     time.sleep(10)
     # Generate random x and y coordinates.
