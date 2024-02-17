@@ -126,14 +126,11 @@
           <div
             class="col-2 m-0 p-0 d-flex justify-content-center align-items-center"
           >
-            <button class="btn text-primary btn-sm btn-outline-light">
-              <b>CV</b>
-            </button>
-          </div>
-          <div
-            class="col-2 m-0 p-0 d-flex justify-content-center align-items-center"
-          >
-            <a href="https://github.com/michaelhayes1337" target="_blank">
+            <a
+              href="https://github.com/michaelhayes1337"
+              target="_blank"
+              class="ml-auto"
+            >
               &nbsp;<i class="fa-brands fa-github"></i>
             </a>
           </div>
@@ -143,13 +140,21 @@
             <a
               href="https://www.linkedin.com/in/michaelhayes1337/"
               target="_blank"
-              >&nbsp;<i class="fa-brands fa-linkedin"></i
-            ></a>
+              class="ml-auto w-auto h-auto"
+              >&nbsp;&nbsp;<i class="fa-brands fa-linkedin"></i>
+            </a>
+          </div>
+          <div
+            class="col-2 m-0 p-0 d-flex justify-content-center align-items-center"
+          >
+            <button class="btn text-primary btn-sm btn-outline-light ml-auto">
+              <b>CV</b>
+            </button>
           </div>
         </div>
       </div>
     </div>
-    <div class="container-fluid site-content-container m-0 p-0">
+    <div class="container-fluid site-content-container m-0 px-5 pt-3">
       {{block "content" .}} {{end}}
     </div>
   </body>

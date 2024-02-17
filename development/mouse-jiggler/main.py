@@ -5,8 +5,8 @@ import time
 while True:
     time.sleep(10)
     # Generate random x and y coordinates.
-    x = random.randint(910, 960)
-    y = random.randint(490, 540)
+    x = random.randint(900, 970)
+    y = random.randint(500, 550)
     
     # Move the mouse to the generated coordinates.
     pyautogui.moveTo(x, y, duration=1)

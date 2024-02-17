@@ -31,7 +31,7 @@ func NewHandlers(r *Repository) {
 func (m *Repository) Home(w http.ResponseWriter, r *http.Request) {
 	remoteIP := r.RemoteAddr
 	m.App.Session.Put(r.Context(), "remote_ip", remoteIP)
-	render.RenderTemplate(w, "home.page.go.html", &models.TemplateData{})
+	render.RenderTemplate(w, r, "home.page.go.html", &models.TemplateData{})
 }
 
 func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
@@ -42,23 +42,27 @@ func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
 	remoteIP := m.App.Session.GetString(r.Context(), "remote_ip")
 	stringMap["remote_ip"] = remoteIP
 	//send data to template
-	render.RenderTemplate(w, "about.page.go.html", &models.TemplateData{
+	render.RenderTemplate(w, r, "about.page.go.html", &models.TemplateData{
 		StringMap: stringMap,
 	})
 }
 
 func (m *Repository) Blogs(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, "blogs.page.go.html", &models.TemplateData{})
+	render.RenderTemplate(w, r, "blogs.page.go.html", &models.TemplateData{})
 }
 
 func (m *Repository) Projects(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, "projects.page.go.html", &models.TemplateData{})
+	render.RenderTemplate(w, r, "projects.page.go.html", &models.TemplateData{})
 }
 
 func (m *Repository) Skills(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, "skills.page.go.html", &models.TemplateData{})
+	render.RenderTemplate(w, r, "skills.page.go.html", &models.TemplateData{})
 }
 
 func (m *Repository) Contact(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, "contact.page.go.html", &models.TemplateData{})
+	render.RenderTemplate(w, r, "contact.page.go.html", &models.TemplateData{})
+}
+
+func (m *Repository) PostContact(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Posted Successfully"))
 }

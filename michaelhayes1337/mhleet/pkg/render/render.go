@@ -8,6 +8,8 @@ import (
 	"mhleet/pkg/models"
 	"net/http"
 	"path/filepath"
+
+	"github.com/justinas/nosurf"
 )
 
 var app *config.AppConfig
@@ -17,12 +19,13 @@ func NewTemplates(a *config.AppConfig) {
 	app = a
 }
 
-func addDefaultData(td *models.TemplateData) *models.TemplateData {
+func addDefaultData(td *models.TemplateData, r *http.Request) *models.TemplateData {
+	td.CSRFToken = nosurf.Token(r)
 	return td
 }
 
 // RenderTemplate renders a template
-func RenderTemplate(w http.ResponseWriter, tmpl string, td *models.TemplateData) {
+func RenderTemplate(w http.ResponseWriter, r *http.Request, tmpl string, td *models.TemplateData) {
 	var err error
 	var buf = new(bytes.Buffer)
 	var tc map[string]*template.Template
@@ -41,7 +44,7 @@ func RenderTemplate(w http.ResponseWriter, tmpl string, td *models.TemplateData)
 	}
 
 	//create the template
-	td = addDefaultData(td)
+	td = addDefaultData(td, r)
 	err = t.Execute(buf, td)
 	if err != nil {
 		log.Println(err)
@@ -80,7 +83,6 @@ func CreateTemplateCache() (map[string]*template.Template, error) {
 
 		myCache[name] = ts
 	}
-	log.Println(myCache)
 	return myCache, nil
 }
 
