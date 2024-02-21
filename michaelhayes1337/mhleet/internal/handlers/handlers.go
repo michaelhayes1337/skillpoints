@@ -1,9 +1,11 @@
 package handlers
 
 import (
-	"mhleet/pkg/config"
-	"mhleet/pkg/models"
-	"mhleet/pkg/render"
+	"log"
+	"mhleet/internal/config"
+	"mhleet/internal/forms"
+	"mhleet/internal/models"
+	"mhleet/internal/render"
 	"net/http"
 )
 
@@ -60,9 +62,37 @@ func (m *Repository) Skills(w http.ResponseWriter, r *http.Request) {
 }
 
 func (m *Repository) Contact(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, r, "contact.page.go.html", &models.TemplateData{})
+	render.RenderTemplate(w, r, "contact.page.go.html", &models.TemplateData{
+		Form: forms.New(nil),
+	})
 }
 
+//PostContact handles the post of the contact form
 func (m *Repository) PostContact(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Posted Successfully"))
+	err := r.ParseForm()
+	if err != nil{
+		log.Println(err)
+		return
+	}
+	//form validation
+	form := forms.New(r.PostForm)
+	form.Has("email", r)
+	form.Has("message", r)
+
+	//reponse
+	if form.Valid() {
+		w.Write([]byte("Posted Successfully"))
+	}else{
+		reservation := models.Reservation{
+			Email: r.Form.Get("email"),
+			Message: r.Form.Get("message"),
+		}
+		data := make(map[string]interface{})
+		data["reservation"] = reservation
+		render.RenderTemplate(w, r, "contact.page.go.html", &models.TemplateData{
+			Form: form,
+			Data: data,
+		})
+		return
+	}
 }

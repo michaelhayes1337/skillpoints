@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 	"log"
-	"mhleet/pkg/config"
-	"mhleet/pkg/handlers"
-	"mhleet/pkg/render"
+	"mhleet/internal/config"
+	"mhleet/internal/handlers"
+	"mhleet/internal/render"
 	"net/http"
 	"time"
 

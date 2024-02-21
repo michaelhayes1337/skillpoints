@@ -2,14 +2,15 @@ package main
 
 import (
 	"fmt"
-	"github.com/justinas/nosurf"
 	"net/http"
+
+	"github.com/justinas/nosurf"
 )
 
 // WriteToConsole Writes to console on each request
 func WriteToConsole(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		fmt.Println("Hit a page")
+		fmt.Printf("%v: %v \n", r.Method , r.URL.Path)
 		next.ServeHTTP(w, r)
 	})
 }

@@ -68,21 +68,21 @@
       </ul>
     </div>
     <div class="col-6">
-      <form action="post">
-        <input type="text" name="csrf_token" value="{{.CSRFToken}}" />
+      <form method="post">
+        <input type="hidden" name="csrf_token" value="{{.CSRFToken}}" />
         <div class="form-group">
-          <label for="exampleFormControlInput1">Email address</label>
+          <label for="email" class="{{with .Form.Errors.Get "email"}}invalid{{end}}">Email address</label>
           <input
             type="email"
             class="form-control"
             id="email"
             name="email"
             placeholder="name@example.com"
-            required
+            
           />
         </div>
         <div class="form-group">
-          <label for="exampleFormControlTextarea1">Example textarea</label>
+          <label for="message" class="{{with .Form.Errors.Get "message"}}invalid{{end}}">Example textarea</label>
           <textarea
             class="form-control"
             id="message"

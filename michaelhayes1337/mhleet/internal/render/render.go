@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"html/template"
 	"log"
-	"mhleet/pkg/config"
-	"mhleet/pkg/models"
+	"mhleet/internal/config"
+	"mhleet/internal/models"
 	"net/http"
 	"path/filepath"
 

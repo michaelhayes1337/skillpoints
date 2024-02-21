@@ -1,8 +1,8 @@
 package main
 
 import (
-	"mhleet/pkg/config"
-	"mhleet/pkg/handlers"
+	"mhleet/internal/config"
+	"mhleet/internal/handlers"
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
