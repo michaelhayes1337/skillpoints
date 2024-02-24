@@ -16,7 +16,11 @@
   }
 </style>
 <div class="row w-100 h-100">
-  <form class="container fluid p-3 border">
+  {{template "card" WithParams
+    "Title" "Hello"
+    "Description" "Some Description"
+  }}
+  <div class="container fluid p-3 border">
     <div class="col-5">
       <h1 class="mb-3 text">Get in touch.</h1>
       <p>Do you want to :</p>
@@ -69,20 +73,24 @@
     </div>
     <div class="col-6">
       <form method="post">
-        <input type="hidden" name="csrf_token" value="{{.CSRFToken}}" />
+        <input name="csrf_token" value="{{.CSRFToken}}" />
         <div class="form-group">
-          <label for="email" class="{{with .Form.Errors.Get "email"}}invalid{{end}}">Email address</label>
+          <label for="email" class="{{with .Form.Errors.Get "email"}}is-invalid{{end}}">Email address</label>
           <input
             type="email"
             class="form-control"
             id="email"
             name="email"
             placeholder="name@example.com"
-            
           />
+          {{with .Form.Errors.Get "email"}}
+            <div class="is-invalid">
+              Please add a username
+            </div>
+          {{end}}
         </div>
         <div class="form-group">
-          <label for="message" class="{{with .Form.Errors.Get "message"}}invalid{{end}}">Example textarea</label>
+          <label for="message" class="{{with .Form.Errors.Get "message"}}is-invalid{{end}}">Example textarea</label>
           <textarea
             class="form-control"
             id="message"
@@ -90,10 +98,15 @@
             placeholder="give me the tl;dr"
             rows="3"
           ></textarea>
+          {{with .Form.Errors.Get "message"}}
+            <div class="is-invalid">
+              Please enter a message
+            </div>
+          {{end}}
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <input class="btn btn-primary" type="submit" value="Submit">
       </form>
     </div>
-  </form>
+  </div>
 </div>
 {{end}}
