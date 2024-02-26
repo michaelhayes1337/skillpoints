@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Gruppo } from "next/font/google";
 import "../styles/globals.css";
+import Navigation from "@/components/Navigation";
 
 const inter = Inter({ subsets: ["latin"] });
+const gruppo = Gruppo({ weight: "400", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "michael hayes",
+  title: "michaelhayes",
   description: "created by me for me",
 };
 
@@ -23,13 +25,7 @@ export default function RootLayout({
           minHeight: "100vh",
         }}
       >
-        <div className="navbar fixed top-0 left-0 bg-base-100">
-          <div className="flex-1">
-            <a className="btn btn-ghost text-xl" style={{ color: "#0C0C0C" }}>
-              michaelhayes
-            </a>
-          </div>
-        </div>
+        <Navigation />
         <div>{children}</div>
       </body>
     </html>
