@@ -1,4 +1,8 @@
 function mergeSortedArrays(a1, a2) {
+  //Edge cases
+  if (a1.length === 0) return a2;
+  if (a2.length === 0) return a1;
+  //Left and Right Pointer
   let idxa1 = 0;
   let idxa2 = 0;
   const mergedSize = a1.length + a2.length;

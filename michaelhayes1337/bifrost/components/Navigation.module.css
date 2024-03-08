@@ -1,6 +1,0 @@
-.reduced-opacity {
-  opacity: 0.75;
-}
-.navigation a:hover::before {
-  content: ">";
-}

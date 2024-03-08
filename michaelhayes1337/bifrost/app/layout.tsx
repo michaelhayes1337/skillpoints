@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Inter, Gruppo } from "next/font/google";
-import "../styles/globals.css";
-import Navigation from "@/components/Navigation";
+import { Inter, Kanit, Lexend } from "next/font/google";
+import "./globals.css";
+import Navbar from "@/components/display/navigation/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
-const gruppo = Gruppo({ weight: "400", subsets: ["latin"] });
 
+const lexend = Lexend({ weight: "300", subsets: ["latin"] });
 export const metadata: Metadata = {
-  title: "michaelhayes",
-  description: "created by me for me",
+  title: "skillpointz",
+  description: "the start of a journey",
 };
 
 export default function RootLayout({
@@ -18,15 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${inter.className} pt-24 px-6`}
-        style={{
-          backgroundColor: "#EBE2CA",
-          minHeight: "100vh",
-        }}
-      >
-        <Navigation />
-        <div>{children}</div>
+      <body className={lexend.className}>
+        <Navbar />
+        {children}
       </body>
     </html>
   );
