@@ -6,10 +6,7 @@ set_the_word()
 set_the_blank()
     
 game_continue = True
-while game_continue:
-    check_player_died()
-    chech_has_won()
-    game_continue = is_game_over()
+while game_continue == True:
     display_the_blank()
     player_guess = input("Guess a letter:\n")
     guessed_correct = find_letter_in_the_word(player_guess)
@@ -17,6 +14,10 @@ while game_continue:
         reveal_letters_in_the_blank(player_guess)
     else:
         remove_player_life()
+    #check conditions to continue
+    check_player_died()
+    chech_has_won()
+    game_continue = not is_game_over()
         
     
     

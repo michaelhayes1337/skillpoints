@@ -45,6 +45,7 @@ def set_the_blank():
     print(f"The blank is {the_blank}")
 
 def display_the_blank():
+    print("*****************************************")
     print(f"The Word: {the_blank}")
     print(f"You have {player_lives} lives remaining")
 
@@ -84,7 +85,7 @@ def find_letter_in_the_word(letter):
 def reveal_letters_in_the_blank(letter):
     global the_blank
     the_black_array = list(the_blank)
-    for idx in range(0, len(the_word)-1):
+    for idx in range(0, len(the_word)):
         if the_word[idx] == letter:
             the_black_array[idx] = the_word[idx]
     the_blank = "".join(the_black_array)
