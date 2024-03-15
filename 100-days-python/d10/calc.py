@@ -1,0 +1,6 @@
+num1 = input("Enter the first number\n")
+op = input("Enter the operation: \n+\n-\n/\n*\n")
+num2 = input("Enter the second number\n")
+print("+++++++++++++++++++++++++++++++++++++")
+answer = eval(f"{num1}{op}{num2}")
+print(f"Answer to {num1} {op} {num2} is {answer}")
