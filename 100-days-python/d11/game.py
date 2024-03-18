@@ -12,10 +12,10 @@ map_card_to_value = {
     "Q": 10,
     "K": 10
 }
-
+suites = ["H", "S", "D", "C"]
 def generate_card_pack(cards):
     """Generate a standard pack of cards excluding jokers"""
-    suites = ["♥", "♠️", "♦️", "♣"]
+    
     for suite in suites:
         for idx in range(0, 14):
             if idx == 0 or idx == 11 or idx == 12 or idx == 13:
@@ -38,16 +38,20 @@ def draw_random_from_card_pack(pack):
             
 def draw_from_card_pack(pack):
     """Select the first card in the card pack and remove it from the deck"""
-    card = pack[0]
-    del pack[0]
+    card = pack.pop()
     return card
 
 def get_card_value(card):
     return card[1:]
 
-def get_card_score(card):
+def get_card_score(card, current_score):
     card_value = get_card_value(card)
     if card_value == "A" or card_value == "J" or card_value == "Q" or card_value == "K":
-        return map_card_to_value[card_value]
+        if card_value != "A":
+            return map_card_to_value[card_value]
+        elif current_score + map_card_to_value[card_value] <= 21:
+            return map_card_to_value[card_value]
+        else:
+            return 1
     else:
         return int(card_value)
