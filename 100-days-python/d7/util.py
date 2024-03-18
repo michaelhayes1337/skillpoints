@@ -1,5 +1,6 @@
 #imports
 import random
+import os
 #game constants
 words_easy = ['cat', 'dog', 'sun', 'sky', 'car', 'bus', 'map', 'hat', 'bat', 'box', 'cup', 'key', 'pen', 'ice', 'mud', 'fog', 'log', 'wax', 'jam', 'jar']
 words_medium = ['freedom', 'justice', 'library', 'mystery', 'journey', 'picture', 'country', 'history', 'diamond', 'balloon', 'fantasy', 'gallery', 'monster', 'victory', 'journey', 'network', 'theater', 'weather', 'musical', 'plastic']
@@ -12,7 +13,16 @@ the_blank = ""
 player_lives = 10
 player_alive = True
 player_won = False
+playes_guesses = []
 
+def clear_screen():
+    # For Windows
+    if os.name == 'nt':
+        os.system('cls')
+    # For macOS and Linux
+    else:
+        os.system('clear')
+        
 def select_random_element(array):
     if not isinstance(array, list):
         raise TypeError("Expected input to be a list.")
@@ -23,6 +33,7 @@ def select_random_element(array):
 
 def get_difficulty():
     global difficulty_chosen
+    clear_screen()
     difficulty_chosen = int(input("Lets play some HANGMAN\nChoose your level: 0.Easy 1.Medium 2.Hard\n"))
     print(f"You have selected: {difficulty_chosen}.{difficulty_options[difficulty_chosen]}")
 
@@ -45,9 +56,11 @@ def set_the_blank():
     print(f"The blank is {the_blank}")
 
 def display_the_blank():
-    print("*****************************************")
+    clear_screen()
+    guesses = ", ".join(playes_guesses)
     print(f"The Word: {the_blank}")
-    print(f"You have {player_lives} lives remaining")
+    print(f"Already Guessed: {guesses}")
+    print(f"{player_lives} lives")
 
 def set_player_winner():
     global player_won
@@ -59,12 +72,12 @@ def chech_has_won():
         if char == "_":
             has_cleared_word = False
     if has_cleared_word:
-        print("Congrats you lucky man, you have won.")
+        print(f"{{-_-}}you won ? the word was {the_word}")
         set_player_winner()
 
 def kill_player():
     global player_alive
-    print("You have failed !")
+    print(f"[o_o] you lost. The word was {the_word}")
     player_alive = False
 
 def remove_player_life():
@@ -77,6 +90,7 @@ def check_player_died():
     return 
 
 def find_letter_in_the_word(letter):
+    playes_guesses.append(letter)
     for char in the_word:
         if char == letter:
             return True
